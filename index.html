@@ -2,117 +2,435 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>우리의 동화책</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>생성형 AI 강사 양현심 | 소개 페이지</title>
   <style>
+    :root {
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --text: #1b1f24;
+      --muted: #5f6b7a;
+      --primary: #1f6feb;
+      --primary-dark: #174ea6;
+      --border: #d9e1ea;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(#fef9f4, #e3f6f5);
-      color: #333;
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
-    header {
-      background: #fdd835;
-      color: #000;
-      padding: 2rem 1rem;
-      text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-    .intro {
-      text-align: center;
-      padding: 2rem;
-      font-size: 1.2rem;
-    }
-    .book-preview {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem;
-    }
-    .card {
-      background: #fff8dc;
-      border-radius: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
-      width: 280px;
-      transition: transform 0.3s ease;
-    }
-    .card:hover {
-      transform: scale(1.03);
-    }
-    .card img {
-      width: 100%;
-      height: auto;
+
+    img {
+      max-width: 100%;
       display: block;
+      border-radius: 16px;
     }
-    .card-content {
-      padding: 1rem;
+
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
     }
-    .card-content h3 {
-      margin-top: 0;
-      font-size: 1.3rem;
-      color: #4e342e;
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(244, 246, 248, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
-    .card-content p {
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #5d4037;
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
     }
-    footer {
-      background: #fdd835;
-      text-align: center;
-      padding: 1rem;
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(31, 111, 235, 0.2);
+    }
+
+    .btn.primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn.outline {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    .btn.outline:hover {
+      background: rgba(31, 111, 235, 0.1);
+    }
+
+    .hero {
+      padding: 5rem 0 3.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin: 0.6rem 0 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-highlight {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .badge {
+      background: #e8f0fe;
+      color: var(--primary-dark);
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-weight: 600;
       font-size: 0.9rem;
-      color: #333;
+    }
+
+    .section {
+      padding: 3.5rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      align-items: center;
+      margin-top: 2.5rem;
+    }
+
+    .profile-details {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    .profile-details ul {
+      padding-left: 1.2rem;
+      margin: 1.2rem 0 0;
+      color: var(--muted);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .timeline-item {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .timeline-item h4 {
+      margin: 0 0 0.4rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      background: var(--card);
+      padding: 1.8rem;
+      border-radius: 18px;
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.07);
+    }
+
+    .feature-card h3 {
+      margin-top: 0;
+    }
+
+    .cta {
+      background: #eaf1ff;
+      border-radius: 24px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      align-items: center;
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    input,
+    textarea {
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    footer {
+      background: #1b1f24;
+      color: #fff;
+      padding: 2.5rem 0;
       margin-top: 3rem;
     }
-    @media (max-width: 600px) {
-      .book-preview {
+
+    .footer-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .footer-grid p {
+      margin: 0.2rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-end;
+      }
+
+      .hero {
+        padding-top: 3rem;
       }
     }
   </style>
 </head>
 <body>
-
-<header>✨ 우리들의 동화책 ✨</header>
-
-<section class="intro">
-  <p>아이들의 상상력을 키워주는 따뜻한 이야기.  
-  자연과 친구, 모험과 감동이 있는 동화책을 만나보세요.</p>
-</section>
-
-<section class="book-preview">
-  <div class="card">
-    <img src="https://source.unsplash.com/featured/?storybook" alt="표지 이미지">
-    <div class="card-content">
-      <h3>호랑의 숲</h3>
-      <p>사라지는 숲을 지키기 위한 아기 호랑이의 모험이 시작됩니다.</p>
+  <header>
+    <div class="container nav">
+      <div class="logo">Hyunsim Yang AI Lab</div>
+      <nav class="nav-links">
+        <a href="#about">강사 소개</a>
+        <a href="#philosophy">강사의 철학</a>
+        <a href="#career">경력</a>
+        <a href="#contact">무료 상담</a>
+      </nav>
+      <div class="nav-cta">
+        <span>010-7913-7841</span>
+        <a class="btn primary" href="tel:010-7913-7841">전화 상담</a>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <img src="https://source.unsplash.com/featured/?ocean,turtle" alt="장면 1">
-    <div class="card-content">
-      <h3>바다거북의 약속</h3>
-      <p>바다를 깨끗하게 만들기 위한 작은 거북이의 용기 있는 이야기.</p>
-    </div>
-  </div>
-  <div class="card">
-    <img src="https://source.unsplash.com/featured/?forest,bear" alt="장면 2">
-    <div class="card-content">
-      <h3>엘리의 숲속 친구들</h3>
-      <p>동물 친구들과 함께하는 따뜻한 자연 보호 이야기.</p>
-    </div>
-  </div>
-</section>
+  </header>
 
-<footer>
-  ⓒ 2025 우리의 동화책. All rights reserved.
-</footer>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">AI TRANSFORMATION COACH</span>
+          <h1>복잡한 기술을 일상의 언어로 연결하는<br />생성형 AI 강사 양현심</h1>
+          <p>
+            AI 전환(AX) 시대를 이끄는 실무 교육 전문가로서, 개인과 기업이 생성형 AI를 통해
+            생산성을 혁신할 수 있도록 맞춤형 커리큘럼과 현장 중심의 솔루션을 제공합니다.
+          </p>
+          <div class="hero-highlight">
+            <span class="badge">AX · DX 실무 교육</span>
+            <span class="badge">생성형 AI 콘텐츠 제작</span>
+            <span class="badge">공공기관 & 기업 강의</span>
+          </div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=900&q=80" alt="강의 장면" />
+        </div>
+      </div>
+    </section>
 
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">강사 소개</h2>
+        <p class="section-subtitle">
+          IT 실무 현장에서 쌓은 소프트웨어 개발 역량을 바탕으로 디지털 격차 해소와 미래 기술 확산에 앞장서고 있습니다.
+          2020년 코딩 교육을 시작으로 메타버스를 거쳐 현재는 생성형 AI 기반의 업무 자동화 및 콘텐츠 제작 교육을 진행합니다.
+        </p>
+        <div class="profile-grid">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="교육 현장" />
+          <div class="profile-details">
+            <h3>교육 철학</h3>
+            <p>
+              "복잡한 기술을 일상의 언어로 연결하여 개인과 기업의 생산성을 혁신합니다."<br />
+              공공기관, 기업, 중장년층 등 다양한 대상에게 맞춤형 솔루션을 제공합니다.
+            </p>
+            <ul>
+              <li>생성형 AI를 활용한 마케팅 및 업무 자동화 특강</li>
+              <li>AI 윤리 및 프롬프트 엔지니어링 기초 강의</li>
+              <li>Runway, Pika 등 AI 영상 제작 도구 활용 교육</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="philosophy" class="section">
+      <div class="container">
+        <h2 class="section-title">강사의 철학</h2>
+        <p class="section-subtitle">강사만의 특장점을 세 가지 카드로 소개합니다.</p>
+        <div class="card-grid">
+          <div class="feature-card">
+            <h3>단계별 커리큘럼</h3>
+            <p>왕초보를 위한 프롬프트 기초부터 전문가를 위한 API 활용까지 대상별 맞춤 교육이 가능합니다.</p>
+          </div>
+          <div class="feature-card">
+            <h3>실무 중심 교육</h3>
+            <p>보고서 작성, 이미지 생성, 영상 편집 등 즉시 적용 가능한 결과물을 도출하도록 설계합니다.</p>
+          </div>
+          <div class="feature-card">
+            <h3>기술 트렌드 반영</h3>
+            <p>매주 업데이트되는 최신 AI 툴을 분석하여 교육 콘텐츠에 실시간으로 반영합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="career" class="section">
+      <div class="container">
+        <h2 class="section-title">경력 사항</h2>
+        <p class="section-subtitle">다양한 기관과 함께한 생성형 AI 교육 및 컨설팅 경험을 소개합니다.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h4>2024 - 현재 · 한국생산성본부(KPC)</h4>
+            <p>기업 맞춤형 생성형 AI 실무 교육, ChatGPT·Claude·Midjourney 활용 특강.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>2024 - 현재 · 서울시 평생학습포털</h4>
+            <p>시민 대상 디지털 리터러시 및 AI 활용 역량 강화 교육.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>2023 - 2025 · 경기콘텐츠진흥원</h4>
+            <p>AI 콘텐츠 크리에이터 양성과정 전담, Runway·Pika 활용 숏폼 제작 실습.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>2023 - 2024 · 대한상공회의소</h4>
+            <p>중소기업 임직원 DX 컨설팅 및 생성형 AI 도입 워크플로우 최적화.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>2021 - 2023 · 미래융합교육연구소</h4>
+            <p>메타버스 및 에듀테크 콘텐츠 수석 연구원, 가상 교육장 설계·운영 총괄.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>2020 - 2022 · 코딩스마트 아카데미</h4>
+            <p>SW 교육 팀장, 초·중등 대상 파이썬 및 블록 코딩 기반 AI 사고력 교육.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container cta">
+        <div>
+          <h2 class="section-title">무료 상담 신청</h2>
+          <p class="section-subtitle">
+            맞춤형 생성형 AI 교육, 조직별 워크숍, 콘텐츠 제작 협업에 대해 문의해 주세요.
+            접수된 내용은 <strong>hyunsimyang@gmail.com</strong> 으로 전송됩니다.
+          </p>
+        </div>
+        <form action="mailto:hyunsimyang@gmail.com" method="post" enctype="text/plain">
+          <input type="text" name="name" placeholder="이름" required />
+          <input type="email" name="email" placeholder="이메일" required />
+          <input type="text" name="topic" placeholder="관심 주제" />
+          <textarea name="message" placeholder="상담 내용을 입력해 주세요" required></textarea>
+          <button class="btn primary" type="submit">문의하기</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <p>주소 : 서초여성가족플라자 서초센터</p>
+      <p>전화번호 : 010-7913-7841</p>
+      <p>이메일주소 : <a href="mailto:hyunsimyang@gmail.com">hyunsimyang@gmail.com</a></p>
+    </div>
+  </footer>
 </body>
 </html>
